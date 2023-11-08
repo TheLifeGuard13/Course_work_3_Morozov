@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "course-work-3-morozov"
+version = "0.1.0"
+description = ""
+authors = ["Vlad Morozov <v@morosoff.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest = "^7.4.3"
+pytest-cov = "^4.1.0"
+
+
+[tool.poetry.group.lint.dependencies]
+black = "^23.11.0"
+isort = "^5.12.0"
+mypy = "^1.6.1"
+flake8 = "^6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
