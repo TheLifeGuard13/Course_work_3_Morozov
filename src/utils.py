@@ -1,14 +1,10 @@
 import json
-import os
 import re
 
 
-# JOINED_PATH = os.path.join(os.getcwd(), 'operations.json')
-# print(os.getcwd())
-
-def get_info_from_json_file() -> list[dict]:
-    """открывает файл в формате json и превращает в формат питон"""
-    with open('/home/vlad/PycharmProjects/Course_work_3_Morozov/src/operations.json', encoding="utf-8") as f:
+def get_info_from_json_file(filename) -> list[dict]:
+    """открывает файл о словарями в формате json и превращает в формат питон"""
+    with open(filename, encoding="utf-8") as f:
         operations_json = f.read()
         operations = json.loads(operations_json)
     return operations
@@ -16,7 +12,7 @@ def get_info_from_json_file() -> list[dict]:
 
 def pick_five_operations(any_list: list[dict]) -> list[dict]:
     """выбирает из списка словарей, словари с определенным значением,
-    упорядочивает словари по дате (начиная с большей) и выбирает 5 словарей"""
+    упорядочивает словари по дате (начиная с большей) и выбирает 5 первых словарей"""
     new_list = []
     for one_dict in any_list:
         if one_dict == {}:
