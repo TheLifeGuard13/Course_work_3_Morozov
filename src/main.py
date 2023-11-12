@@ -1,20 +1,16 @@
 from config import DATA_PATH
-from src.utils import change_date_format, format_payment_info, get_info_from_json_file, pick_five_operations
+from src.utils import (get_executed_operations, get_info_from_json_file,
+                       get_operation_instances, sort_operation)
 
-if __name__ == "__main__":
-    transactions = get_info_from_json_file(DATA_PATH)
-    for transaction in pick_five_operations(transactions):
-        if transaction["description"] == "Открытие вклада":
-            print(
-                f"""{change_date_format(transaction["date"])} {transaction['description']}
-Ваш кошелек -> {format_payment_info(transaction["to"])}
-{transaction['operationAmount']['amount']} {transaction['operationAmount']['currency']["name"]}
-"""
-            )
-        else:
-            print(
-                f"""{change_date_format(transaction["date"])} {transaction['description']}
-{format_payment_info(transaction["from"])} -> {format_payment_info(transaction["to"])}
-{transaction['operationAmount']['amount']} {transaction['operationAmount']['currency']["name"]}
-"""
-            )
+
+def main():
+    if __name__ == "__main__":
+        operations = get_info_from_json_file(DATA_PATH)
+        operation_instances = get_operation_instances(operations)
+        executed_operations = get_executed_operations(operation_instances)
+        sorted_operations = sort_operation(executed_operations)[:5]
+        for operation in sorted_operations:
+            print(operation)
+
+
+main()
